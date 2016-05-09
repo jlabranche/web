@@ -11,8 +11,7 @@ Kanban_Task::init();
 
 
 
-class Kanban_Task extends Kanban_Db
-{
+class Kanban_Task extends Kanban_Db {
 	// the instance of this object
 	private static $instance;
 
@@ -39,8 +38,7 @@ class Kanban_Task extends Kanban_Db
 
 
 
-	static function init()
-	{
+	static function init() {
 		add_action( sprintf( 'wp_ajax_save_%s', self::$slug ), array( __CLASS__, 'ajax_save' ) );
 		add_action( sprintf( 'wp_ajax_delete_%s', self::$slug ), array( __CLASS__, 'ajax_delete' ) );
 	}
@@ -260,6 +258,7 @@ class Kanban_Task extends Kanban_Db
 				LEFT JOIN {$worked_table_name} worked
 				ON tasks.id = worked.task_id
 				WHERE tasks.is_active = 1
+                                AND board_id = 1
 				GROUP BY tasks.id
 		;";
 
